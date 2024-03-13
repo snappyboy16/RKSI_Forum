@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Регистрация {% endblock %}
+{% block content %}
+<center><h1>Регистрация</h1></center>
+    <div class="form__auth__block">
+      <div class="form__auth__block__content">
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="notification is-error">
+                <p class="form__message__error">{{ messages[0] }}. Перейдите на<a href="{{ url_for('auth.login') }}">страницу авторизации</a>.
+            </div>
+          {% endif %}
+          {% endwith %}
+            <form class="form__auth__style" action="/signup" method="post">
+                <label>Введите ваш никнейм</label>
+                <input type="text" name="auth_nickname" placeholder="Введите никнейм" required>
+                <label>Введите ваше имя</label>
+                <input type="text" name="auth_name" placeholder="Введите имя" required>
+                <label>Введите вашу группу</label>
+                <input type="text" name="auth_group" placeholder="Введите группу в которой вы учитесь" required>
+                <label>Введите вашу почту</label>
+                <input type="email" name="auth_email" placeholder="Введите вашу почту" required>
+                <label>Введите ваш пароль</label>
+                <input type="password" name="auth_password" placeholder="Введите пароль" required>
+                <button class="form_auth_button" type="submit" name="form_auth_submit">Зарегистрироваться</button>
+            </form>
+      </div>
+    </div>
+{% endblock %}

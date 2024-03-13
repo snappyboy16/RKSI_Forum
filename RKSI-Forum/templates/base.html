@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Unbounded:wght@200..900&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- подключение стилей -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+</head>
+<body>
+    <nav class="nav_menu">
+        {% if url == "home" %}
+        <ul>
+            <li><a href="/" class="logo logo_active">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="signup">Регистрация</a></li>
+            <li style="float: right"><a href="login">Авторизация</a></li>
+        </ul>
+        {% elif url == "news" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news" class="active">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="signup">Регистрация</a></li>
+            <li style="float: right"><a href="login">Авторизация</a></li>
+        </ul>
+        {% elif url == "students" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students" class="active">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="signup">Регистрация</a></li>
+            <li style="float: right"><a href="login">Авторизация</a></li>
+        </ul>
+        {% elif url == "schedule" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule" class="active">Расписание</a></li>
+            <li style="float: right"><a href="signup">Регистрация</a></li>
+            <li style="float: right"><a href="login">Авторизация</a></li>
+        </ul>
+        {% elif url == "login" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="signup">Регистрация</a></li>
+            <li style="float: right"><a href="login" class="active">Авторизация</a></li>
+        </ul>
+        {% elif url == "signup" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="signup" class="active">Регистрация</a></li>
+            <li style="float: right"><a href="login">Авторизация</a></li>
+        </ul>
+        {% elif url == "profile" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="profile" class="active">Профиль</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+        </ul>
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+      <h3>Автор: Владимир Егоров</h3>
+    </footer>
+</body>
+</html>
