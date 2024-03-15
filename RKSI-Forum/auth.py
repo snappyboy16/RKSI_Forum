@@ -1,10 +1,9 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
-from flask_login import login_user
+from flask_login import login_user, logout_user, login_required
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import Student
-from . import db
+from RKSI_Forum.models import Student, db
 
-auth = Blueprint('profile', __name__)
+auth = Blueprint('auth', __name__)
 
 
 @auth.route('/profile')
@@ -14,7 +13,6 @@ def profile():
 
 @auth.route('/login')
 def login():
-    login_user(Student)
     return render_template('auth.html', url='login')
 
 
@@ -24,11 +22,13 @@ def login_post():
     password = request.form.get('password')
 
     student = Student.query.filter_by(email=email).first()
-
-    if not student or not check_password_hash(student.password, password):
+    print(student)
+    if not student or not password:
         flash('Пожалуйста, проверьте свои данные для входа и повторите попытку.')
         return redirect(url_for('auth.login'))
 
+    login_user(student)
+    print(student)
     return redirect(url_for('main.profile'))
 
 
@@ -46,13 +46,13 @@ def signup_post():
     password = request.form.get('password')
 
     student = Student.query.filter_by(email=email).first()
-
+    print(student)
     if student:
         flash('Адрес электронной почты уже существует')
         return redirect(url_for('auth.signup'))
 
     add_student = Student(nickname=nickname, name=name, group_rksi=group, email=email,
-                          password=generate_password_hash(password=password, method="sha256"))
+                          password=password)
 
     db.session.add(add_student)
     db.session.commit()
@@ -61,5 +61,7 @@ def signup_post():
 
 
 @auth.route('/logout')
-def reg():
-    return render_template('reg.html', url='logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.home'))
