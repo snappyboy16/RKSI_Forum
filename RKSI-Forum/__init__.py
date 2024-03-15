@@ -1,12 +1,9 @@
 from flask import Flask
 from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-from .auth import auth as auth_blueprint
-from .main import main as main_blueprint
-from .models import Student
-
-db = SQLAlchemy()
+from RKSI_Forum.auth import auth as auth_blueprint
+from RKSI_Forum.main import main as main_blueprint
+from RKSI_Forum.models import Student, db
 
 app = Flask(__name__)
 
@@ -19,6 +16,7 @@ migrate = Migrate(app, db)
 login_manager = LoginManager()
 login_manager.login_view = 'auth.login'
 login_manager.init_app(app)
+
 
 @login_manager.user_loader
 def add_user(student_id):
