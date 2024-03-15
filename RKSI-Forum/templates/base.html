@@ -12,7 +12,58 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 </head>
 <body>
+   {% if current_user.is_authenticated %}
     <nav class="nav_menu">
+        {% if url == "home" %}
+        <ul>
+            <li><a href="/" class="logo logo_active">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+            <li style="float: right"><a href="profile">Профиль</a></li>
+        </ul>
+        {% elif url == "news" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news" class="active">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+            <li style="float: right"><a href="profile">Профиль</a></li>
+        </ul>
+        {% elif url == "students" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students" class="active">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+            <li style="float: right"><a href="profile">Профиль</a></li>
+        </ul>
+        {% elif url == "schedule" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule" class="active">Расписание</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+            <li style="float: right"><a href="profile">Профиль</a></li>
+        </ul>
+        {% elif url == "profile" %}
+        <ul>
+            <li><a href="/" class="logo">RKSI-Forum</a></li>
+            <li><a href="news">Новости</a></li>
+            <li><a href="students">Студенты</a></li>
+            <li><a href="schedule">Расписание</a></li>
+            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
+            <li style="float: right"><a href="profile" class="active">Профиль</a></li>
+        </ul>
+        {% endif %}
+    </nav>
+   {% endif %}
+   {% if not current_user.is_authenticated %}
+   <nav class="nav_menu">
         {% if url == "home" %}
         <ul>
             <li><a href="/" class="logo logo_active">RKSI-Forum</a></li>
@@ -67,17 +118,9 @@
             <li style="float: right"><a href="signup" class="active">Регистрация</a></li>
             <li style="float: right"><a href="login">Авторизация</a></li>
         </ul>
-        {% elif url == "profile" %}
-        <ul>
-            <li><a href="/" class="logo">RKSI-Forum</a></li>
-            <li><a href="news">Новости</a></li>
-            <li><a href="students">Студенты</a></li>
-            <li><a href="schedule">Расписание</a></li>
-            <li style="float: right"><a href="profile" class="active">Профиль</a></li>
-            <li style="float: right"><a href="logout" class="logout">Выход</a></li>
-        </ul>
         {% endif %}
     </nav>
+    {% endif %}
     <main>
         {% block content %}
         {% endblock %}
