@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from flask import Blueprint
+from flask_login import login_required, current_user
 
 main = Blueprint('main', __name__)
 
@@ -22,6 +23,12 @@ def students():
 @main.route('/schedule')
 def schedule():
     return render_template('schedule.html', url='schedule')
+
+
+@main.route('/profile')
+@login_required
+def profile():
+    return render_template('profile.html', url='profile', name=current_user.name)
 
 
 @main.route('/profile/edit')
