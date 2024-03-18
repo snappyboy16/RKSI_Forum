@@ -2,4 +2,22 @@
 
 {% block title %} Новости {% endblock %}
 {% block content %}
+    {% for post in posts %}
+    <div class="post__news">
+        <div class="post__title">
+          <a href="#">{{ post['title'] }}</a>
+        </div>
+        <div class="post__content">
+          <p class="post__text">{{ post['text'] }}</p>
+        </div>
+        <div class="post__footer">
+          <div class="post__author">
+            <a href="#">{{ post['author'] }}</a>
+          </div>
+          <div class="post__data">
+            <a href="#">{{ post['date'] }}</a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
 {% endblock %}

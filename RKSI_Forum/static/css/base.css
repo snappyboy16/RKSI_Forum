@@ -42,11 +42,16 @@ li .active {
   color: #FFFFFF;
 }
 main {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  column-gap: 20px;
   min-height: 100%;
-  height: 800px;
+  height: auto;
   background-color: #FFFFFF;
   margin: 0 0 10px 0;
-  padding: 0 0 0 10px;
+  padding: 10px 0 0 10px;
 }
 footer {
   display: flex;
@@ -160,4 +165,54 @@ input:focus {
     height: 50px;
     font-family: "Anonymous Pro", monospace;
     font-size: 14px;
+}
+.post__news {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  width: 47%;
+  height: 250px;
+  padding: 10px 15px 10px 15px;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post__title a{
+  padding: 0;
+  font-size: 20px;
+  color: #162EAE;
+}
+.post__title a:hover{
+  color: #FFBB00;
+}
+.post__content {
+  height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post__content .post__text{
+  padding: 0;
+  font-family: "Wix Madefor Text", sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.post__footer {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.post__footer .post__author a{
+  padding: 0;
+  color: #162EAE;
+}
+.post__footer .post__author a:hover{
+  color: #FFBB00;
+}
+.post__footer .post__data a{
+  padding: 0 0 0 10px;
+  color: #162EAE;
 }
